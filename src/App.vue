@@ -66,7 +66,7 @@ import { db } from "@/firebase";
  * firebase ref
  */
 const todosCollectionRef = collection(db, "todos");
-const todosCollectionQuery = query(todosCollectionRef, orderBy("date", "desc"));
+const todosCollectionQuery = query(todosCollectionRef, orderBy("date"));
 
 
 // todos
@@ -137,7 +137,7 @@ const toggleDone = (id) => {
   const index = todos.value.findIndex((todo) => todo.id === id);
 
   updateDoc(doc(todosCollectionRef, id), {
-    done: !todos.value[index].done,
+    done: todos.value[index].done = !todos.value[index].done,
   });
 };
 </script>
