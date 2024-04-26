@@ -106,7 +106,7 @@ onMounted(() => {
     const todo = {
       id: doc.id,
       content: doc.data().content,
-      dont: doc.data().done,
+      done: doc.data().done,
     };
     fbTodos.push(todo);
   });
@@ -133,10 +133,10 @@ const deleteTodo = (id) => {
 };
 
 //toggle done
-const toggleDone = (id) => {
+const toggleDone = async (id) => {
   const index = todos.value.findIndex((todo) => todo.id === id);
 
-  updateDoc(doc(todosCollectionRef, id), {
+  await updateDoc(doc(todosCollectionRef, id), {
     done: todos.value[index].done = !todos.value[index].done,
   });
 };
